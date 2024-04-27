@@ -22,6 +22,7 @@ from config.schema import swagger_urlpatterns
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("api/v1/sore/", include("store.urls")),
 ]
 urlpatterns += swagger_urlpatterns
 
