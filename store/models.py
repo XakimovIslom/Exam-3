@@ -4,18 +4,18 @@ from common.models import BaseModel
 
 
 class Product(BaseModel):
-    name = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
     code = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.name
+        return self.title
 
 
 class Material(BaseModel):
-    name = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.name
+        return self.title
 
 
 class Warehouse(BaseModel):
@@ -24,13 +24,13 @@ class Warehouse(BaseModel):
     price = models.IntegerField(default=0)
 
     def __str__(self):
-        return f"{self.material.name} - {self.reminder}"
+        return f"{self.material.title} - {self.reminder}"
 
 
 class ProductMaterial(BaseModel):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='products')
-    material = models.ForeignKey(Material, on_delete=models.CASCADE, related_name='materials')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='materials')
+    material = models.ForeignKey(Material, on_delete=models.CASCADE, related_name='products')
     quantity = models.IntegerField(default=0)
 
     def __str__(self):
-        return f"{self.product.name} - {self.material.name}"
+        return f"{self.product.title} - {self.material.title}"
